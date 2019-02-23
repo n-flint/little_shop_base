@@ -79,6 +79,8 @@
   <p>
   <% if current_user == @merchant %>
   <%= link_to 'Items for Sale', dashboard_items_path %>
+  <%= link_to 'Download Existing Customers' %>
+  <%= link_to 'Download Potential Customers' %>
   <% else %>
   <%= link_to 'Items for Sale', admin_merchant_items_path(@merchant) %>
   <% end %>
