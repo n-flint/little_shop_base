@@ -26,7 +26,13 @@ class MerchantsController < ApplicationController
       format.html
       format.csv {send_data users.to_csv}
     end
+  end
 
-
+  def potential
+    users = User.all
+    respond_to do |format|
+      format.html
+      format.csv {send_data users.to_csv}
+    end
   end
 end
