@@ -82,7 +82,7 @@
   <section class="download-csv">
     <h3>Download Lists (.csv):</h3>
     <p><%= link_to 'Existing Customers', download_existing_path(format: "csv") %></p>
-    <p><%= link_to 'Potential Customers' %></p>
+    <p><%= link_to 'Potential Customers', download_potential_path(format: "csv") %></p>
     <% else %>
   </section>
   <%= link_to 'Items for Sale', admin_merchant_items_path(@merchant) %>
