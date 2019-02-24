@@ -38,6 +38,8 @@ Rails.application.routes.draw do
 
   post '/admin/users/:merchant_id/items', to: 'merchants/items#create', as: 'admin_user_items'
   patch '/admin/users/:merchant_id/items/:id', to: 'merchants/items#update', as: 'admin_user_item'
+  get '/download_existing', to: 'merchants#existing', as: :download_existing
+  
 
   namespace :admin do
     put '/users/:id/enable', to: 'users#enable', as: :enable_user
