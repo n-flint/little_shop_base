@@ -19,16 +19,19 @@ RSpec.describe 'merchant customer list download' do
 
   it 'merchant sees links to download customer list' do
     visit dashboard_path
-    # save_and_open_page
 
-    expect(page).to have_link("Existing Customers List (.csv File)")
-    expect(page).to have_link("Potential Customers List (.csv File)")
+    within '.download-csv' do
+      expect(page).to have_link("Existing Customers")
+      expect(page).to have_link("Potential Customers")
+    end
   end
 
   it 'merchant can download list of existing customers' do
     visit dashboard_path
 
-    click_link('Existing Customers List (.csv File)')
+    within '.download-csv' do
+      click_link('Existing Customers')
+    end
   end
 
 
