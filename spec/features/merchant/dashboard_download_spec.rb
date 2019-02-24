@@ -34,6 +34,14 @@ RSpec.describe 'merchant customer list download' do
     end
   end
 
+  it 'merchant can download list of potential customers' do
+    visit dashboard_path
+
+    within '.download-csv' do
+      click_link('Potential Customers')
+    end
+  end
+
 
 
 
