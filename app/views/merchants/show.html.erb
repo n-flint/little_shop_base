@@ -79,10 +79,12 @@
   <p>
   <% if current_user == @merchant %>
   <%= link_to 'Items for Sale', dashboard_items_path %>
-  <h3>Download Lists:</h3>
-  <%= link_to 'Existing Customers List (.csv File)', download_existing_path(format: "csv") %>
-  <%= link_to 'Potential Customers List (.csv File)' %>
-  <% else %>
+  <section class="download-csv">
+    <h3>Download Lists (.csv):</h3>
+    <p><%= link_to 'Existing Customers', download_existing_path(format: "csv") %></p>
+    <p><%= link_to 'Potential Customers' %></p>
+    <% else %>
+  </section>
   <%= link_to 'Items for Sale', admin_merchant_items_path(@merchant) %>
   <% end %>
   </p>
