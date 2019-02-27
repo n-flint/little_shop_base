@@ -39,6 +39,9 @@ Rails.application.routes.draw do
   post '/admin/users/:merchant_id/items', to: 'merchants/items#create', as: 'admin_user_items'
   patch '/admin/users/:merchant_id/items/:id', to: 'merchants/items#update', as: 'admin_user_item'
 
+  resources :discounts
+  
+
   namespace :admin do
     put '/users/:id/enable', to: 'users#enable', as: :enable_user
     put '/users/:id/disable', to: 'users#disable', as: :disable_user
