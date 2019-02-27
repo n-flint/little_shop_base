@@ -21,18 +21,30 @@ class MerchantsController < ApplicationController
   end
 
   def existing
-    users = User.all
+    merchant = User.find(params[:merchant_id])
+    existing_users = User.joins(orders: {order_items: :item})
+                        .select("Distinct users.*")
+                        .where(items: {merchant_id: merchant.id})
     respond_to do |format|
       format.html
-      format.csv {send_data users.to_csv}
+      format.csv {send_data existing_users.to_csv}
     end
   end
 
   def potential
+    merchant = User.find(params[:merchant_id])
+    potential_users = User.joins(orders: {order_items: :item})
+                          .select("Distinct users.*")
+                          .where(items: {merchant_id: merchant.id}, orders: {status: 'completed'})
+                          # .where(status: "completed")
+                          # require "pry"
+                          # binding.pry
+
+
     users = User.all
     respond_to do |format|
       format.html
-      format.csv {send_data users.to_csv}
+      format.csv {send_data potential_users.to_csv}
     end
   end
 end
