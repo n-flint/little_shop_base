@@ -15,12 +15,20 @@ RSpec.describe 'as a merchant from their dashboard' do
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@merchant)
   end
 
-  it 'sees a link to apply discount' do
+  it 'sees a link to add discount' do
     visit dashboard_path
-    save_and_open_page
 
     within ('.discounts') do
-      expect(page).to have_link('Offer 10$ Off All Orders of 50$ or More')
+      expect(page).to have_link('Discounts')
     end
+  end
+  it 'discount link directs to discount update page' do
+    visit dashboard_path
+
+    within ('.discounts') do
+      click_link('Discounts')
+    end
+
+    expect(current_path).to eq(discounts_path)
   end
 end
