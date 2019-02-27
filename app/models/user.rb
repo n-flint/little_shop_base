@@ -69,6 +69,22 @@ class User < ApplicationRecord
         .limit(limit)
   end
 
+  def self.to_csv(options = {})
+    # desired_columns = [:name, :email]
+    test = CSV.generate(options) do |csv|
+      # csv << desired_columns
+      columns = %w(name email)
+      # csv << column_names
+      csv << columns
+      all.each do |user|
+        # csv << user.attributes.values_at(*desired_columns)
+        # csv << user.attributes.values
+        csv << user.attributes.values_at(*columns)
+        # csv << user.name
+      end
+    end
+  end
+
   def top_items_sold_by_quantity(limit)
     items.joins(:order_items)
          .where(order_items: {fulfilled: true})
@@ -147,4 +163,5 @@ class User < ApplicationRecord
          .order('total DESC')
          .limit(limit)
   end
+
 end
